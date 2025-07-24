@@ -1,0 +1,19 @@
+# Core app framework
+streamlit
+
+# For making API requests to FastAPI backend
+requests
+
+# For data manipulation and reading Excel files
+pandas
+openpyxl
+
+# For plotting charts (if you're using matplotlib)
+matplotlib
+
+# For rendering PDF downloads from bytes
+fpdf
+PyMuPDF
+
+# Optional but useful
+python-dotenv  # If you're using environment variables
