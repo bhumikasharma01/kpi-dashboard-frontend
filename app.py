@@ -286,7 +286,7 @@ def admin_dashboard():
             past_months.append(prev.replace(day=1))
         past_months.reverse()
 
-        API_URL = "{API_URL}"
+        API_URL = "https://kpi-dashboard-backend.onrender.com"
         response = requests.get(f"{API_URL}/upload/all_generated")
 
         if response.status_code == 200:
