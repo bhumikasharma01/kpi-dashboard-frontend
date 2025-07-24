@@ -17,3 +17,5 @@ PyMuPDF
 
 # Optional but useful
 python-dotenv  # If you're using environment variables
+
+PyJWT
