@@ -21,7 +21,7 @@ import re
 
 
 
-API_URL = "http://127.0.0.1:8000"
+API_URL = "https://kpi-dashboard-backend-g61v.onrender.com"
 JWT_SECRET = "your_secret_key"  # must match the backend secret used in create_access_token
 ALGORITHM = "HS256"
 
