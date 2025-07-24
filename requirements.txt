@@ -19,3 +19,4 @@ PyMuPDF
 python-dotenv  # If you're using environment variables
 
 PyJWT
+plotly
