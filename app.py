@@ -192,7 +192,8 @@ def admin_dashboard():
         if submit_button:
             try:
                 # url = f"https://kpi-dashboard-backend.onrender.com/upload/view?month={selected_month}&year={selected_year}"
-                url = f"https://kpi-dashboard-backend.onrender.com/view_report_by_month?month={selected_month}&year={selected_year}"
+                url = f"https://kpi-dashboard-backend.onrender.com/upload/view?month={selected_month}&year={selected_year}"
+                
 
                 response = requests.get(url, headers=headers)
                 st.write("Status code:", response.status_code)
