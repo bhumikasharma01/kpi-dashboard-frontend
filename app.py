@@ -196,8 +196,7 @@ def admin_dashboard():
                 
 
                 response = requests.get(url, headers=headers)
-                st.write("Status code:", response.status_code)
-                st.write("Raw response:", response.text) 
+                
 
                 if response.status_code == 200:
                     data = response.json()
@@ -291,7 +290,7 @@ def admin_dashboard():
             past_months.append(prev.replace(day=1))
         past_months.reverse()
 
-        API_URL = "https://kpi-dashboard-backend.onrender.com"
+        API_URL = "https://kpi-dashboard-backend-g61v.onrender.com"
         response = requests.get(f"{API_URL}/upload/all_generated")
 
         if response.status_code == 200:
@@ -425,7 +424,7 @@ def admin_dashboard():
         if st.session_state.show_delete_user_form:
             st.markdown("### 🗑️ Delete User")
             try:
-                users_resp = requests.get("{API_URL}/auth/users", headers=headers)
+                users_resp = requests.get("https://kpi-dashboard-backend-g61v.onrender.com/auth/users", headers=headers)
                 if users_resp.status_code == 200:
                     users = users_resp.json()
                     usernames = [u["username"] for u in users if u["username"] != st.session_state.username]
@@ -547,7 +546,7 @@ def admin_dashboard():
                             with st.expander(f"{rep['filename']}"):
                                 st.write(f"📅 **Month-Year:** {rep['month']} {rep['year']}")
                                 st.write(f"👤 **Uploaded by:** {rep['uploaded_by']}")
-                                download_url = f"{API_URL}/upload/reports/download?month={rep['month']}&year={rep['year']}"
+                                download_url = f"https://kpi-dashboard-backend-g61v.onrender.com/upload/reports/download?month={rep['month']}&year={rep['year']}"
                                 download_resp = requests.get(download_url, headers=headers)
 
                                 if download_resp.status_code == 200:
@@ -634,7 +633,7 @@ def admin_dashboard():
         if st.button("Generate PDF Report"):
             with st.spinner("Generating PDF..."):
                 try:
-                    API_URL = "{API_URL}/upload/generate_pdf"
+                    API_URL = "https://kpi-dashboard-backend-g61v.onrender.com/upload/generate_pdf"
 
                     # If you're using access_token anyway, you can keep this, or remove it completely.
                     # headers = {}
@@ -731,7 +730,7 @@ def user_dashboard():
     if submit_button:
         try:
             headers = {"Authorization": f"Bearer {st.session_state['token']}"}
-            url = f"{API_URL}/upload/view?month={selected_month}&year={selected_year}"
+            url = f"https://kpi-dashboard-backend-g61v.onrender.com/upload/view?month={selected_month}&year={selected_year}"
             response = requests.get(url, headers=headers)
 
             if response.status_code == 200:
@@ -870,8 +869,8 @@ def user_dashboard():
         past_months.append(prev.replace(day=1))
 
     past_months.reverse()  # So we show oldest to latest
-    API_URL = "{API_URL}/upload/all_generated"
-    response = requests.get(API_URL)  # Removed headers
+    API_URL = "https://kpi-dashboard-backend-g61v.onrender.com/upload/all_generated"
+    response = requests.get(https://kpi-dashboard-backend-g61v.onrender.com)  # Removed headers
 
     if response.status_code == 200:
         reports = response.json()
@@ -937,7 +936,7 @@ def show_cluster_score_summary():
     cluster_data = {cluster: {} for cluster in clusters}
 
     # 📦 Fetch reports
-    API_URL = "{API_URL}/upload/all_generated"
+    API_URL = "{https://kpi-dashboard-backend-g61v.onrender.com}/upload/all_generated"
     response = requests.get(API_URL)
 
     if response.status_code != 200:
@@ -1137,7 +1136,7 @@ def upload_excel_report(username):
         if submitted and uploaded_file:
             headers = {"Authorization": f"Bearer {st.session_state.token}"}
             params = {"month": month, "year": year}
-            check_resp = requests.get("{API_URL}/upload/reports", headers=headers, params=params)
+            check_resp = requests.get("https://kpi-dashboard-backend-g61v.onrender.com}/upload/reports", headers=headers, params=params)
 
             try:
                 check_resp.raise_for_status()
@@ -1160,7 +1159,7 @@ def upload_excel_report(username):
             }
             files = {"file": (uploaded_file.name, uploaded_file.getvalue(), uploaded_file.type)}
 
-            upload_resp = requests.post("{API_URL}/upload/reports", data=data, files=files, headers=headers)
+            upload_resp = requests.post("https://kpi-dashboard-backend-g61v.onrender.com/upload/reports", data=data, files=files, headers=headers)
             if upload_resp.status_code == 200 and "message" in upload_resp.json():
                 st.success("✅ Report uploaded successfully!")
             else:
