@@ -495,7 +495,7 @@ def admin_dashboard():
                     headers = {"Authorization": f"Bearer {st.session_state.token}"}
                     params = {"month": month, "year": year}
 
-                    check_resp = requests.get("{API_URL}/upload/reports", headers=headers, params=params)
+                    check_resp = requests.get("https://kpi-dashboard-backend-g61v.onrender.com/upload/reports", headers=headers, params=params)
                     existing = check_resp.json() if check_resp.status_code == 200 else None
 
                     replace = False
@@ -506,7 +506,7 @@ def admin_dashboard():
                     data = {"month": month, "year": year, "replace": str(replace)}
                     files = {"file": (uploaded_file.name, uploaded_file.getvalue(), uploaded_file.type)}
 
-                    upload_resp = requests.post("{API_URL}/upload/reports", data=data, files=files, headers=headers)
+                    upload_resp = requests.post("https://kpi-dashboard-backend-g61v.onrender.com/upload/reports", data=data, files=files, headers=headers)
 
                     if upload_resp.status_code == 200:
                         st.success("✅ Report uploaded successfully!")
@@ -538,7 +538,7 @@ def admin_dashboard():
 
                 try:
                     headers = {"Authorization": f"Bearer {st.session_state.token}"}
-                    response = requests.get("{API_URL}/upload/reports", headers=headers, params=params)
+                    response = requests.get("https://kpi-dashboard-backend-g61v.onrender.com/upload/reports", headers=headers, params=params)
                     reports = response.json() if response.status_code == 200 else []
 
                     if reports:
@@ -591,7 +591,7 @@ def admin_dashboard():
                     params["year"] = del_year
 
                 try:
-                    response = requests.get("{API_URL}/upload/reports", headers=headers, params=params)
+                    response = requests.get("https://kpi-dashboard-backend-g61v.onrender.com}/upload/reports", headers=headers, params=params)
                     st.session_state.delete_reports_cache = response.json() if response.status_code == 200 else []
                 except Exception as e:
                     st.error(f"❌ Error fetching reports: {e}")
