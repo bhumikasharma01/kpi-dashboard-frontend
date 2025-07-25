@@ -940,10 +940,21 @@ def show_cluster_score_summary():
     response = requests.get(API_URL)
 
     if response.status_code != 200:
-        st.error("❌ Failed to load generated reports.")
+        st.error(f"❌ Failed to load generated reports. Status code: {response.status_code}")
+        st.text(response.text)
         return
 
-    reports = response.json()
+    try:
+        reports = response.json()
+    except Exception as e:
+        st.error(f"❌ Failed to parse JSON: {e}")
+        st.text(f"Raw Response:\n{response.text}")
+        return
+    
+    if not isinstance(reports, list):
+        st.error("⚠️ Unexpected data format. Expected a list of reports.")
+        st.text(str(reports))
+        return
 
     for date_obj, label in zip(past_months, month_labels):
         month_name = calendar.month_name[date_obj.month]
