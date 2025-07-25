@@ -936,7 +936,7 @@ def show_cluster_score_summary():
     cluster_data = {cluster: {} for cluster in clusters}
 
     # 📦 Fetch reports
-    API_URL = "{https://kpi-dashboard-backend-g61v.onrender.com}/upload/all_generated"
+    API_URL = "https://kpi-dashboard-backend-g61v.onrender.com}/upload/all_generated"
     response = requests.get(API_URL)
 
     if response.status_code != 200:
