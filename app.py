@@ -605,7 +605,7 @@ def admin_dashboard():
                             if delete_btn:
                                 try:
                                     del_resp = requests.delete(
-                                        "{API_URL}/upload/reports/delete",
+                                        "https://kpi-dashboard-backend-g61v.onrender.com/upload/reports/delete",
                                         headers=headers,
                                         params={"month": rep["month"], "year": rep["year"]}
                                     )
