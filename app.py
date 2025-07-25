@@ -872,9 +872,20 @@ def user_dashboard():
     API_URL = "https://kpi-dashboard-backend-g61v.onrender.com/upload/all_generated"
     response = requests.get("https://kpi-dashboard-backend-g61v.onrender.com")  # Removed headers
 
-    if response.status_code == 200:
+    
+
+    if response.status_code != 200:
+        st.error(f"❌ Error fetching reports: {response.status_code}")
+        st.text(response.text)
+        return
+    
+    try:
         reports = response.json()
-        results = []
+    except Exception as e:
+        st.error(f"❌ Failed to parse backend response as JSON: {e}")
+        st.text(f"Raw content:\n{response.text}")
+        return
+
 
         for date in past_months:
             month_name = calendar.month_name[date.month]
@@ -882,6 +893,12 @@ def user_dashboard():
             expected_filename = f"Full_Rankings_{month_name}_{year}.pdf"
 
             matched = next((r for r in reports if r["pdf_filename"] == expected_filename), None)
+            # 🛡️ Sanity check before using 'reports'
+            if not isinstance(reports, list):
+                st.error("❌ Backend did not return a list of reports.")
+                st.text(f"Response content:\n{reports}")
+                return
+
             if matched:
                 # Read PDF content
                 pdf_bytes = base64.b64decode(matched["pdf_content"])
