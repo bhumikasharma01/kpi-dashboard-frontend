@@ -353,7 +353,7 @@ def admin_dashboard():
         with col3:
             if st.button("👁️ View All Users"):
                 try:
-                    users_resp = requests.get("{API_URL}/auth/users", headers=headers)
+                    users_resp = requests.get("https://kpi-dashboard-backend-g61v.onrender.com/auth/users", headers=headers)
                     if users_resp.status_code == 200:
                         users = users_resp.json()
 
@@ -409,7 +409,7 @@ def admin_dashboard():
                                 "password": new_password,
                                 "role": new_role
                             }
-                            response = requests.post("{API_URL}/auth/create-user", json=payload, headers=headers)
+                            response = requests.post("https://kpi-dashboard-backend-g61v.onrender.com/auth/create-user", json=payload, headers=headers)
                             if response.status_code == 200:
                                 st.success("🎉 User created successfully.")
                                 st.session_state.show_add_user_form = False
@@ -434,7 +434,7 @@ def admin_dashboard():
                         if st.button("🗑️ Confirm Delete") and confirm:
                             try:
                                 del_resp = requests.delete(
-                                    f"{API_URL}/auth/delete-user",
+                                    f"https://kpi-dashboard-backend-g61v.onrender.com/auth/delete-user",
                                     params={"username": selected_user},
                                     headers=headers
                                 )
