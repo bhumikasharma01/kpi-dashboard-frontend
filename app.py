@@ -873,18 +873,20 @@ def user_dashboard():
     response = requests.get("https://kpi-dashboard-backend-g61v.onrender.com")  # Removed headers
 
     
-
-    if response.status_code != 200:
-        st.error(f"❌ Error fetching reports: {response.status_code}")
-        st.text(response.text)
-        return
-    
-    try:
+    if response.status_code == 200:
         reports = response.json()
-    except Exception as e:
-        st.error(f"❌ Failed to parse backend response as JSON: {e}")
-        st.text(f"Raw content:\n{response.text}")
-        return
+        results = []
+    # if response.status_code != 200:
+    #     st.error(f"❌ Error fetching reports: {response.status_code}")
+    #     st.text(response.text)
+    #     return
+    
+    # try:
+    #     reports = response.json()
+    # except Exception as e:
+    #     st.error(f"❌ Failed to parse backend response as JSON: {e}")
+    #     st.text(f"Raw content:\n{response.text}")
+    #     return
 
 
         for date in past_months:
