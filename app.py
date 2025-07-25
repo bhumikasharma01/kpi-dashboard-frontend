@@ -1051,7 +1051,7 @@ def decode_token(token):
 def fetch_dashboard_data(token):
     headers = {"Authorization": f"Bearer {st.session_state.token}"}
     try:
-        response = requests.get("{API_URL}/kpi/dashboard", headers=headers)
+        response = requests.get("https://kpi-dashboard-backend-g61v.onrender.com/kpi/dashboard", headers=headers)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
