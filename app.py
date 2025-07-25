@@ -956,7 +956,7 @@ def show_cluster_score_summary():
 
     # 📦 Fetch reports
     API_URL = "https://kpi-dashboard-backend-g61v.onrender.com}/upload/all_generated"
-    response = requests.get(https://kpi-dashboard-backend-g61v.onrender.com/upload/all_generated)
+    response = requests.get("https://kpi-dashboard-backend-g61v.onrender.com/upload/all_generated")
 
     if response.status_code != 200:
         st.error(f"❌ Failed to load generated reports. Status code: {response.status_code}")
