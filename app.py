@@ -591,7 +591,7 @@ def admin_dashboard():
                     params["year"] = del_year
 
                 try:
-                    response = requests.get("https://kpi-dashboard-backend-g61v.onrender.com}/upload/reports", headers=headers, params=params)
+                    response = requests.get("https://kpi-dashboard-backend-g61v.onrender.com/upload/reports", headers=headers, params=params)
                     st.session_state.delete_reports_cache = response.json() if response.status_code == 200 else []
                 except Exception as e:
                     st.error(f"❌ Error fetching reports: {e}")
