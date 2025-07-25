@@ -870,7 +870,7 @@ def user_dashboard():
 
     past_months.reverse()  # So we show oldest to latest
     API_URL = "https://kpi-dashboard-backend-g61v.onrender.com/upload/all_generated"
-    response = requests.get(https://kpi-dashboard-backend-g61v.onrender.com)  # Removed headers
+    response = requests.get("https://kpi-dashboard-backend-g61v.onrender.com")  # Removed headers
 
     if response.status_code == 200:
         reports = response.json()
