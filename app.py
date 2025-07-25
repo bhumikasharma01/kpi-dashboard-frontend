@@ -194,6 +194,8 @@ def admin_dashboard():
                 url = f"https://kpi-dashboard-backend.onrender.com/upload/view?month={selected_month}&year={selected_year}"
 
                 response = requests.get(url, headers=headers)
+                st.write("Status code:", response.status_code)
+                st.write("Raw response:", response.text) 
 
                 if response.status_code == 200:
                     data = response.json()
